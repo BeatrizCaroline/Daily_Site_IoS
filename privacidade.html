@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacidade - Daily</title>
+  <link rel="icon" type="image/png" href="Imagem Logo DD.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="privacidade.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+
+      <!-- Logo + Voltar -->
+      <div class="header__brand">
+        <a href="index.html" class="brand-link">
+          <img src="Imagem Logo DD.png" alt="Logo Daily" class="brand-logo" />
+          <span class="brand-name">daily</span>
+        </a>
+        <a href="index.html" class="back-link" id="backLink">← Voltar</a>
+      </div>
+
+      <!-- Nav centralizado -->
+      <nav class="header__nav">
+        <span class="page-title" id="pageTitle">Privacidade</span>
+      </nav>
+
+      <!-- Controles: acessibilidade, idioma, tema -->
+      <div class="header__controls">
+        <div class="access-group">
+          <button class="hbtn" id="btnFontDecrease" aria-label="Diminuir fonte">A-</button>
+          <button class="hbtn" id="btnFontNormal"   aria-label="Fonte padrão">A</button>
+          <button class="hbtn" id="btnFontIncrease" aria-label="Aumentar fonte">A+</button>
+          <button class="hbtn" id="btnContrast" aria-label="Alto contraste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+          </button>
+        </div>
+
+        <div class="header-sep"></div>
+
+        <div class="lang-group">
+          <button class="hbtn lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-pipe">|</span>
+          <button class="hbtn lang-btn" data-lang="es">ES</button>
+          <span class="lang-pipe">|</span>
+          <button class="hbtn lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <div class="header-sep"></div>
+
+        <button class="hbtn" id="themeBtn" aria-label="Alternar tema">
+          <svg class="ti ti--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="ti ti--sun"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="priv-layout">
+
+    <!-- Sidebar -->
+    <aside class="priv-sidebar">
+      <p class="sidebar-label" id="sidebarLabel">Nesta página</p>
+      <nav class="sidebar-nav">
+        <a href="#s1"  class="sidebar-link active" data-i18n-sn="s1_title">Sobre nós</a>
+        <a href="#s2"  class="sidebar-link" data-i18n-sn="s2_title">Dados coletados</a>
+        <a href="#s3"  class="sidebar-link" data-i18n-sn="s3_title">Como usamos</a>
+        <a href="#s4"  class="sidebar-link" data-i18n-sn="s4_title">Compartilhamento</a>
+        <a href="#s5"  class="sidebar-link" data-i18n-sn="s5_title">Seus direitos</a>
+        <a href="#s6"  class="sidebar-link" data-i18n-sn="s6_title">Cookies</a>
+        <a href="#s7"  class="sidebar-link" data-i18n-sn="s7_title">Segurança</a>
+        <a href="#s8"  class="sidebar-link" data-i18n-sn="s8_title">Menores</a>
+        <a href="#s9"  class="sidebar-link" data-i18n-sn="s9_title">Alterações</a>
+        <a href="#s10" class="sidebar-link" data-i18n-sn="s10_title">Contato</a>
+      </nav>
+      <p class="sidebar-updated"><span id="updatedLabel">Atualizado em:</span><br><strong>12 jun. 2026</strong></p>
+    </aside>
+
+    <!-- Conteúdo -->
+    <div class="priv-body" id="privBody">
+
+      <div class="priv-hero">
+        <div class="hero-tag" id="heroTag">Política de Privacidade</div>
+        <h1 class="hero-title" id="heroTitle">Seus dados, seu controle</h1>
+        <p class="hero-sub" id="heroSub">A daily é transparente sobre como cuida das suas informações. Esta política explica tudo de forma clara e direta.</p>
+        <div class="hero-badges">
+          <span class="badge" id="badge1">LGPD</span>
+          <span class="badge" id="badge2">GDPR Ready</span>
+          <span class="badge" id="badge3">Dados Criptografados</span>
+        </div>
+      </div>
+
+      <article class="priv-article">
+
+        <section class="priv-section" id="s1">
+          <h2 data-i18n-h="s1_title">Sobre nós</h2>
+          <p data-i18n-p="s1_p1">A <strong>Daily Tecnologia Ltda.</strong>, com sede em São Paulo, é responsável pelo tratamento dos seus dados pessoais na plataforma daily.</p>
+          <p data-i18n-p="s1_p2">Esta política se aplica ao site, ao aplicativo e a todos os serviços da daily.</p>
+        </section>
+
+        <section class="priv-section" id="s2">
+          <h2 data-i18n-h="s2_title">Dados coletados</h2>
+          <p data-i18n-p="s2_intro">Coletamos apenas o necessário:</p>
+          <ul class="priv-list">
+            <li data-i18n-li="s2_li1">Nome, e-mail e senha (com hash seguro)</li>
+            <li data-i18n-li="s2_li2">Tarefas, eventos e arquivos criados na plataforma</li>
+            <li data-i18n-li="s2_li3">Dados técnicos: IP, dispositivo e logs de acesso</li>
+            <li data-i18n-li="s2_li4">Dados de pagamento processados por gateway seguro (não armazenamos dados de cartão)</li>
+          </ul>
+        </section>
+
+        <section class="priv-section" id="s3">
+          <h2 data-i18n-h="s3_title">Como usamos seus dados</h2>
+          <ul class="priv-list">
+            <li data-i18n-li="s3_li1">Criar e manter sua conta</li>
+            <li data-i18n-li="s3_li2">Fornecer e melhorar os recursos da plataforma</li>
+            <li data-i18n-li="s3_li3">Enviar atualizações e comunicações essenciais</li>
+            <li data-i18n-li="s3_li4">Garantir a segurança da plataforma</li>
+            <li data-i18n-li="s3_li5">Cumprir obrigações legais</li>
+          </ul>
+          <p class="notice" data-i18n-p="s3_notice">Não usamos seus dados para publicidade de terceiros e não os vendemos para nenhuma empresa.</p>
+        </section>
+
+        <section class="priv-section" id="s4">
+          <h2 data-i18n-h="s4_title">Compartilhamento</h2>
+          <p data-i18n-p="s4_p1">Seus dados são compartilhados somente com:</p>
+          <ul class="priv-list">
+            <li data-i18n-li="s4_li1">Parceiros técnicos contratualmente vinculados às mesmas obrigações de privacidade</li>
+            <li data-i18n-li="s4_li2">Autoridades, quando exigido por lei ou ordem judicial</li>
+            <li data-i18n-li="s4_li3">Terceiros, apenas com sua autorização explícita</li>
+          </ul>
+        </section>
+
+        <section class="priv-section" id="s5">
+          <h2 data-i18n-h="s5_title">Seus direitos</h2>
+          <p data-i18n-p="s5_intro">Pela LGPD (Lei 13.709/2018), você pode:</p>
+          <ul class="priv-list">
+            <li data-i18n-li="s5_li1">Acessar, corrigir ou excluir seus dados</li>
+            <li data-i18n-li="s5_li2">Solicitar portabilidade das informações</li>
+            <li data-i18n-li="s5_li3">Revogar seu consentimento a qualquer momento</li>
+            <li data-i18n-li="s5_li4">Ser informado sobre como seus dados são usados</li>
+          </ul>
+          <p data-i18n-p="s5_contact">Entre em contato pelo e-mail <a href="mailto:privacidade@daily.app" class="priv-link">privacidade@daily.app</a>. Respondemos em até 15 dias úteis.</p>
+        </section>
+
+        <section class="priv-section" id="s6">
+          <h2 data-i18n-h="s6_title">Cookies</h2>
+          <p data-i18n-p="s6_p1">Usamos cookies para manter sua sessão, lembrar preferências e analisar o uso da plataforma de forma anonimizada. Você pode desativá-los nas configurações do navegador.</p>
+        </section>
+
+        <section class="priv-section" id="s7">
+          <h2 data-i18n-h="s7_title">Segurança</h2>
+          <ul class="priv-list">
+            <li data-i18n-li="s7_li1">Criptografia TLS em todas as comunicações</li>
+            <li data-i18n-li="s7_li2">Senhas armazenadas com bcrypt</li>
+            <li data-i18n-li="s7_li3">Acesso restrito a dados por equipe autorizada</li>
+            <li data-i18n-li="s7_li4">Backups criptografados com retenção de 90 dias</li>
+          </ul>
+          <p data-i18n-p="s7_p2">Em caso de incidente, notificaremos os usuários afetados e a ANPD nos prazos da LGPD.</p>
+        </section>
+
+        <section class="priv-section" id="s8">
+          <h2 data-i18n-h="s8_title">Menores de idade</h2>
+          <p data-i18n-p="s8_p">A plataforma é destinada a maiores de 13 anos. Caso identifiquemos dados de menores coletados sem consentimento parental, os excluiremos imediatamente.</p>
+        </section>
+
+        <section class="priv-section" id="s9">
+          <h2 data-i18n-h="s9_title">Alterações</h2>
+          <p data-i18n-p="s9_p">Podemos atualizar esta política. Quando houver mudanças relevantes, você será avisado por e-mail ou na plataforma com pelo menos 15 dias de antecedência.</p>
+        </section>
+
+        <section class="priv-section" id="s10">
+          <h2 data-i18n-h="s10_title">Contato</h2>
+          <p data-i18n-p="s10_p">Dúvidas ou solicitações sobre privacidade:</p>
+          <div class="contact-row">
+            <a href="mailto:privacidade@daily.app" class="contact-item">
+              <span class="contact-item__label" data-i18n-ct="ct1_l">Privacidade</span>
+              <span class="contact-item__value">privacidade@daily.app</span>
+            </a>
+            <a href="mailto:dpo@daily.app" class="contact-item">
+              <span class="contact-item__label" data-i18n-ct="ct2_l">DPO</span>
+              <span class="contact-item__value">dpo@daily.app</span>
+            </a>
+            <div class="contact-item">
+              <span class="contact-item__label" data-i18n-ct="ct3_l">Endereço</span>
+              <span class="contact-item__value" data-i18n-ct="ct3_v">Av. Paulista, 1000 — São Paulo, SP</span>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span data-i18n="copyright">© 2026 Daily. Todos os direitos reservados.</span>
+    <div class="footer__links">
+      <a href="privacidade.html" data-i18n="privacy">Privacidade</a>
+      <a href="#" data-i18n="terms">Termos</a>
+      <a href="#" data-i18n="contact">Contato</a>
+    </div>
+  </footer>
+
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script src="privacidade.js"></script>
+</body>
+</html>

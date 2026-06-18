@@ -1,28 +1,93 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light" data-lang="pt">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Daily</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="image/png" href="Imagem Logo DD.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
+
 <body>
 
+  <!-- VLibras Widget -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- HEADER UNIFICADO -->
   <header class="header">
     <div class="header__inner">
+
+      <!-- Lado esquerdo: acessibilidade + idioma + tema -->
+      <div class="header__left">
+
+        <div class="access-group" role="toolbar" aria-label="Acessibilidade">
+          <span class="header-label" data-i18n="access_label">Acesso:</span>
+          <button class="hbtn" id="btnFontDecrease" aria-label="Diminuir fonte">A-</button>
+          <button class="hbtn" id="btnFontNormal" aria-label="Fonte padrão">A</button>
+          <button class="hbtn" id="btnFontIncrease" aria-label="Aumentar fonte">A+</button>
+          <button class="hbtn hbtn--contrast" id="btnContrast" aria-label="Alto contraste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="header-sep" aria-hidden="true"></div>
+
+        <div class="lang-group" role="group" aria-label="Idioma">
+          <button class="hbtn lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="es">ES</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <div class="header-sep" aria-hidden="true"></div>
+
+        <button class="hbtn hbtn--theme" id="themeBtn" aria-label="Alternar tema">
+          <svg class="ti ti--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+          <svg class="ti ti--sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Nav: centralizado sobre os 65% -->
       <nav class="header__nav" id="headerNav">
-        <a href="#" class="nav-link active" data-panel="sobre">Sobre Nós</a>
-        <a href="#" class="nav-link" data-panel="planos">Planos</a>
-        <a href="#" class="nav-link nav-link--login" data-panel="login">Login</a>
+        <a href="#" class="nav-link active" data-panel="sobre" data-i18n-nav="nav_sobre">Sobre Nós</a>
+        <a href="#" class="nav-link" data-panel="planos" data-i18n-nav="nav_planos">Planos</a>
+        <a href="#" class="nav-link nav-link--login" data-panel="login" data-i18n-nav="nav_login">Login</a>
       </nav>
+
     </div>
   </header>
 
   <main class="layout">
 
+    <!-- PAINEL ESQUERDO: LOGIN -->
     <aside class="panel-left" id="panelLeft">
       <div class="form-wrapper">
 
@@ -32,75 +97,98 @@
         </div>
 
         <div class="form-header">
-          <h1 class="form-title" id="formTitle">Bem-vindo de volta</h1>
-          <p class="form-subtitle" id="formSubtitle">Acesse sua conta para continuar</p>
+          <h1 class="form-title" id="formTitle" data-i18n="form_title_login">Bem-vindo de volta</h1>
+          <p class="form-subtitle" id="formSubtitle" data-i18n="form_sub_login">Acesse sua conta para continuar</p>
         </div>
 
         <form class="form" id="mainForm" novalidate>
-
           <div class="form-fields" id="formFields">
+
             <div class="field field--name" id="fieldName">
-              <label for="name">Nome completo</label>
-              <input type="text" id="name" placeholder="Seu nome" autocomplete="name" />
+              <label for="name" data-i18n="label_name">Nome completo</label>
+              <input type="text" id="name" placeholder="Seu nome" autocomplete="name" data-i18n-ph="ph_name" />
             </div>
-            <div class="field" id="fieldEmail">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" placeholder="seu@email.com" autocomplete="email" />
+
+            <div class="field">
+              <label for="email" data-i18n="label_email">E-mail</label>
+              <input type="email" id="email" placeholder="seu@email.com" autocomplete="email" data-i18n-ph="ph_email" />
             </div>
-            <div class="field" id="fieldPassword">
-              <label for="password">Senha</label>
+
+            <div class="field">
+              <label for="password" data-i18n="label_pass">Senha</label>
               <div class="input-password">
                 <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
                 <button type="button" class="toggle-pass" id="togglePass" aria-label="Mostrar senha">
-                  <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </button>
               </div>
             </div>
+
           </div>
 
-          <a href="#" class="forgot-link" id="forgotLink">Esqueci minha senha</a>
-
-          <button type="submit" class="btn-primary" id="submitBtn">Entrar</button>
-
+          <a href="#" class="forgot-link" id="forgotLink" data-i18n="forgot">Esqueci minha senha</a>
+          <button type="submit" class="btn-primary" id="submitBtn" data-i18n="btn_enter">Entrar</button>
         </form>
 
-        <div class="divider"><span>ou</span></div>
+        <div class="divider"><span data-i18n="or">ou</span></div>
 
         <div class="toggle-mode">
-          <p id="toggleText">Não tem conta?</p>
-          <button type="button" class="btn-ghost" id="toggleBtn">Criar conta gratuita</button>
+          <p id="toggleText" data-i18n="no_account">Não tem conta?</p>
+          <button type="button" class="btn-ghost" id="toggleBtn" data-i18n="btn_signup">Criar conta gratuita</button>
         </div>
       </div>
 
       <div class="social-links">
         <a href="#" aria-label="Twitter" class="social-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
         </a>
         <a href="#" aria-label="Instagram" class="social-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
         </a>
         <a href="#" aria-label="LinkedIn" class="social-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
         </a>
         <a href="#" aria-label="FAQ" class="social-icon faq-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <span>FAQ</span>
         </a>
       </div>
     </aside>
 
+    <!-- PAINEL DIREITO: CARROSSEL -->
     <section class="panel-right" id="panelRight" aria-label="Conteúdo informativo">
       <div class="panel-right__inner">
-
         <div class="carousel">
+
           <button class="carousel-arrow carousel-arrow--left" id="arrowLeft" aria-label="Anterior">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
           <button class="carousel-arrow carousel-arrow--right" id="arrowRight" aria-label="Próximo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </button>
 
           <div class="carousel-track" id="carouselTrack">
@@ -108,112 +196,141 @@
             <!-- Slide 0: Sobre Nós -->
             <div class="carousel-slide" data-slide="sobre">
               <div class="sobre-wrapper">
-                <div class="sobre-tag">Quem somos</div>
-                <h2 class="sobre-title">Oi, somos a daily 👋</h2>
-                <p class="sobre-text">A gente começou assim: um grupo de gente cansada de viver com listas espalhadas, lembretes perdidos no celular e a sensação de que o dia nunca rende o que devia. Não foi uma ideia genial de repente, foi mais um "será que mais alguém sente isso também?", e a resposta foi sim, quase todo mundo.</p>
-                <p class="sobre-text">Por isso criamos a <strong>daily</strong>: um lugar só, simples e direto, para organizar estudos, trabalho e casa sem precisar de dez aplicativos diferentes abertos ao mesmo tempo.</p>
+                <div class="sobre-tag" data-i18n="tag_sobre">Quem somos</div>
+                <h2 class="sobre-title" data-i18n="sobre_title">Oi, somos a daily 👋</h2>
+                <p class="sobre-text" data-i18n="sobre_p1">A gente começou assim: um grupo cansado de listas espalhadas,
+                  lembretes perdidos e a sensação de que o dia nunca rende o que devia.</p>
+                <p class="sobre-text" data-i18n="sobre_p2">Por isso criamos a <strong>daily</strong>: um lugar só,
+                  simples e direto, para organizar estudos, trabalho e casa sem precisar de dez aplicativos abertos ao
+                  mesmo tempo.</p>
 
                 <blockquote class="sobre-quote">
                   <span class="sobre-quote__mark">"</span>
-                  A gente quer que você abra a daily de manhã e já saiba exatamente como vai ser o seu dia — sem susto, sem esquecer nada importante.
+                  <span data-i18n="sobre_quote">A gente quer que você abra a daily de manhã e já saiba exatamente como
+                    vai ser o seu dia, sem susto, sem esquecer nada importante.</span>
                 </blockquote>
 
                 <div class="sobre-section">
-                  <h3 class="sobre-section-title">O que dá pra fazer na daily?</h3>
-                  <p class="sobre-text">Pensa nela como uma agenda inteligente que conhece a sua rotina. Computador ou celular, tudo sincronizado, tudo no seu ritmo.</p>
+                  <h3 class="sobre-section-title" data-i18n="sobre_what_title">O que dá pra fazer na daily?</h3>
+                  <p class="sobre-text" data-i18n="sobre_what_sub">Pensa nela como uma agenda inteligente que conhece a
+                    sua rotina. Computador ou celular, tudo sincronizado, tudo no seu ritmo.</p>
                 </div>
 
                 <ul class="sobre-features">
-                  <li>
-                    <span class="feature-icon">📚</span>
-                    <span>Organizar tarefas de estudo, trabalho e casa em um só lugar</span>
-                  </li>
-                  <li>
-                    <span class="feature-icon">📅</span>
-                    <span>Acompanhar compromissos e reuniões sem perder nada</span>
-                  </li>
-                  <li>
-                    <span class="feature-icon">💰</span>
-                    <span>Controlar gastos e achar as melhores ofertas no mercado</span>
-                  </li>
-                  <li>
-                    <span class="feature-icon">☀️</span>
-                    <span>Checar a previsão do tempo antes de sair de casa</span>
-                  </li>
-                  <li>
-                    <span class="feature-icon">🗂️</span>
-                    <span>Guardar arquivos importantes com segurança</span>
-                  </li>
+                  <li><span class="feature-icon">📚</span><span data-i18n="feat1">Organizar tarefas de estudo, trabalho
+                      e casa em um só lugar</span></li>
+                  <li><span class="feature-icon">📅</span><span data-i18n="feat2">Acompanhar compromissos e reuniões sem
+                      perder nada</span></li>
+                  <li><span class="feature-icon">💰</span><span data-i18n="feat3">Controlar gastos e achar as melhores
+                      ofertas no mercado</span></li>
+                  <li><span class="feature-icon">☀️</span><span data-i18n="feat4">Checar a previsão do tempo antes de
+                      sair de casa</span></li>
+                  <li><span class="feature-icon">🗂️</span><span data-i18n="feat5">Guardar arquivos importantes com
+                      segurança</span></li>
                 </ul>
 
-                <p class="sobre-signoff">Feita por gente que vive a mesma correria que você — todos os dias.</p>
+                <p class="sobre-signoff" data-i18n="sobre_signoff">Feita por gente que vive a mesma correria que você,
+                  todos os dias.</p>
               </div>
             </div>
 
             <!-- Slide 1: Planos -->
             <div class="carousel-slide" data-slide="planos">
               <div class="planos-wrapper">
-                <div class="sobre-tag">Escolha seu plano</div>
-                <h2 class="sobre-title">Planos simples, sem pegadinha</h2>
-                <p class="sobre-text planos-subtitle">Comece a organizar sua vida hoje. Sem fidelidade, cancele quando quiser.</p>
+                <div class="sobre-tag" data-i18n="tag_planos">Escolha seu plano</div>
+                <h2 class="sobre-title" data-i18n="planos_title">Planos simples, sem pegadinha</h2>
+                <p class="sobre-text planos-subtitle" data-i18n="planos_sub">Comece a organizar sua vida hoje. Sem
+                  fidelidade, cancele quando quiser.</p>
 
                 <div class="planos-grid">
 
-                  <div class="plano-card" id="cardPessoal">
+                  <!-- Trial -->
+                  <div class="plano-card plano-card--trial">
+                    <div class="plano-badge plano-badge--trial" data-i18n="trial_badge">Grátis 7 dias</div>
+                    <div class="plano-card__header">
+                      <div class="plano-icon">🎁</div>
+                      <div>
+                        <div class="plano-name" data-i18n="trial_name">Teste Grátis</div>
+                        <div class="plano-desc" data-i18n="trial_desc">Experimente sem compromisso</div>
+                      </div>
+                    </div>
+                    <div class="plano-price">
+                      <span class="plano-price__value plano-price__value--free" data-i18n="trial_free">Grátis</span>
+                    </div>
+                    <div class="plano-economy" style="visibility:visible" data-i18n="trial_economy">7 dias, depois
+                      R$35/mês</div>
+                    <ul class="plano-features">
+                      <li><span class="check">✓</span><span data-i18n="trial_f1">Acesso completo por 7 dias</span></li>
+                      <li><span class="check">✓</span><span data-i18n="trial_f2">Sem cartão de crédito</span></li>
+                      <li><span class="check">✓</span><span data-i18n="trial_f3">Todas as funcionalidades</span></li>
+                      <li><span class="check">✓</span><span data-i18n="trial_f4">Cancele a qualquer momento</span></li>
+                    </ul>
+                    <button class="plano-cta plano-cta--trial" data-i18n="trial_cta">Começar teste grátis</button>
+                  </div>
+
+                  <!-- Pessoal -->
+                  <div class="plano-card">
                     <div class="plano-card__header">
                       <div class="plano-icon">👤</div>
                       <div>
-                        <div class="plano-name">Pessoal</div>
-                        <div class="plano-desc">Para o seu dia a dia</div>
+                        <div class="plano-name" data-i18n="plan_personal">Pessoal</div>
+                        <div class="plano-desc" data-i18n="plan_personal_desc">Para o seu dia a dia</div>
                       </div>
                     </div>
                     <div class="plano-toggle-group">
-                      <button class="plano-toggle active" data-plan="pessoal" data-period="mensal">Mensal</button>
-                      <button class="plano-toggle" data-plan="pessoal" data-period="anual">Anual</button>
+                      <button class="plano-toggle active" data-plan="pessoal" data-period="mensal"
+                        data-i18n="monthly">Mensal</button>
+                      <button class="plano-toggle" data-plan="pessoal" data-period="anual"
+                        data-i18n="annual">Anual</button>
                     </div>
                     <div class="plano-price" id="pricePessoal">
                       <span class="plano-price__currency">R$</span>
                       <span class="plano-price__value">35</span>
-                      <span class="plano-price__period">/mês</span>
+                      <span class="plano-price__period" data-i18n="per_month">/mês</span>
                     </div>
-                    <div class="plano-economy" id="economyPessoal" style="visibility:hidden">Economize R$60 por ano</div>
+                    <div class="plano-economy" id="economyPessoal" style="visibility:hidden"
+                      data-i18n="economy_personal">Economize R$60 por ano</div>
                     <ul class="plano-features">
-                      <li><span class="check">✓</span> Tarefas ilimitadas</li>
-                      <li><span class="check">✓</span> Agenda completa</li>
-                      <li><span class="check">✓</span> Controle financeiro</li>
-                      <li><span class="check">✓</span> Previsão do tempo</li>
-                      <li><span class="check">✓</span> Armazenamento de arquivos</li>
+                      <li><span class="check">✓</span><span data-i18n="pf1">Tarefas ilimitadas</span></li>
+                      <li><span class="check">✓</span><span data-i18n="pf2">Agenda completa</span></li>
+                      <li><span class="check">✓</span><span data-i18n="pf3">Controle financeiro</span></li>
+                      <li><span class="check">✓</span><span data-i18n="pf4">Previsão do tempo</span></li>
+                      <li><span class="check">✓</span><span data-i18n="pf5">Armazenamento de arquivos</span></li>
                     </ul>
-                    <button class="plano-cta">Começar agora</button>
+                    <button class="plano-cta" data-i18n="plan_cta_start">Começar agora</button>
                   </div>
 
-                  <div class="plano-card plano-card--destaque" id="cardCorporativo">
-                    <div class="plano-badge">Mais popular</div>
+                  <!-- Corporativo -->
+                  <div class="plano-card plano-card--destaque">
+                    <div class="plano-badge" data-i18n="most_popular">Mais popular</div>
                     <div class="plano-card__header">
                       <div class="plano-icon">🏢</div>
                       <div>
-                        <div class="plano-name">Corporativo</div>
-                        <div class="plano-desc">Para equipes e empresas</div>
+                        <div class="plano-name" data-i18n="plan_corp">Corporativo</div>
+                        <div class="plano-desc" data-i18n="plan_corp_desc">Para equipes e empresas</div>
                       </div>
                     </div>
                     <div class="plano-toggle-group">
-                      <button class="plano-toggle active" data-plan="corp" data-period="mensal">Mensal</button>
-                      <button class="plano-toggle" data-plan="corp" data-period="anual">Anual</button>
+                      <button class="plano-toggle active" data-plan="corp" data-period="mensal"
+                        data-i18n="monthly">Mensal</button>
+                      <button class="plano-toggle" data-plan="corp" data-period="anual"
+                        data-i18n="annual">Anual</button>
                     </div>
                     <div class="plano-price" id="priceCorp">
                       <span class="plano-price__currency">R$</span>
                       <span class="plano-price__value">20</span>
-                      <span class="plano-price__period">/pessoa/mês</span>
+                      <span class="plano-price__period" data-i18n="per_person_month">/pessoa/mês</span>
                     </div>
-                    <div class="plano-economy" id="economyCorp" style="visibility:hidden">Economize R$50 por pessoa/ano</div>
+                    <div class="plano-economy" id="economyCorp" style="visibility:hidden" data-i18n="economy_corp">
+                      Economize R$60 por pessoa/ano</div>
                     <ul class="plano-features">
-                      <li><span class="check">✓</span> Tudo do plano Pessoal</li>
-                      <li><span class="check">✓</span> Gestão de equipes</li>
-                      <li><span class="check">✓</span> Relatórios e dashboards</li>
-                      <li><span class="check">✓</span> Suporte prioritário</li>
-                      <li><span class="check">✓</span> Integração com ferramentas</li>
+                      <li><span class="check">✓</span><span data-i18n="cf1">Tudo do plano Pessoal</span></li>
+                      <li><span class="check">✓</span><span data-i18n="cf2">Gestão de equipes</span></li>
+                      <li><span class="check">✓</span><span data-i18n="cf3">Relatórios e dashboards</span></li>
+                      <li><span class="check">✓</span><span data-i18n="cf4">Suporte prioritário</span></li>
+                      <li><span class="check">✓</span><span data-i18n="cf5">Integração com ferramentas</span></li>
                     </ul>
-                    <button class="plano-cta plano-cta--destaque">Falar com vendas</button>
+                    <button class="plano-cta plano-cta--destaque" data-i18n="plan_cta_sales">Falar com vendas</button>
                   </div>
 
                 </div>
@@ -223,25 +340,29 @@
           </div><!-- /carousel-track -->
 
           <div class="carousel-dots" id="carouselDots">
-            <button class="carousel-dot active" data-dot="0" aria-label="Sobre Nós"></button>
-            <button class="carousel-dot" data-dot="1" aria-label="Planos"></button>
+            <button class="carousel-dot active" data-dot="0" aria-label="Slide 1"></button>
+            <button class="carousel-dot" data-dot="1" aria-label="Slide 2"></button>
           </div>
-        </div><!-- /carousel -->
 
+        </div>
       </div>
     </section>
 
   </main>
 
   <footer class="footer">
-    <span>© 2026 Daily. Todos os direitos reservados.</span>
+    <span data-i18n="copyright">© 2026 Daily. Todos os direitos reservados.</span>
     <div class="footer__links">
-      <a href="#">Privacidade</a>
-      <a href="#">Termos</a>
-      <a href="#">Contato</a>
+      <a href="privacidade.html" target="_blank" rel="noopener" data-i18n="privacy">Privacidade</a>
+      <a href="#" data-i18n="terms">Termos</a>
+      <a href="#" data-i18n="contact">Contato</a>
     </div>
   </footer>
 
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
   <script src="login.js"></script>
 </body>
+
 </html>
