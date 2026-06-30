@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento — Plano Pessoal · Daily</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="IMG/Imagem Logo DD.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="IMG/Imagem Logo DD.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="IMG/Imagem Logo DD.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="CSS/pagarPessoal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+
+  <!-- HEADER: só acessibilidade + link login -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__left">
+        <div class="access-group" role="toolbar" aria-label="Acessibilidade">
+          <span class="header-label">Acessibilidade:</span>
+          <button class="hbtn" id="btnFontDecrease" aria-label="Diminuir fonte">A-</button>
+          <button class="hbtn" id="btnFontNormal"   aria-label="Fonte padrão">A</button>
+          <button class="hbtn" id="btnFontIncrease" aria-label="Aumentar fonte">A+</button>
+          <button class="hbtn" id="btnContrast" aria-label="Alto contraste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+          </button>
+        </div>
+        <div class="header-sep" aria-hidden="true"></div>
+        <div class="lang-group" role="group" aria-label="Idioma">
+          <button class="hbtn lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="es">ES</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="header-sep" aria-hidden="true"></div>
+        <button class="hbtn" id="themeBtn" aria-label="Alternar tema">
+          <svg class="ti ti--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="ti ti--sun"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
+
+      <!-- Só o link de login no nav -->
+      <nav class="header__nav" id="headerNav" style="justify-content:flex-end;">
+        <a href="index.html" class="nav-link" data-i18n-nav="nav_login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout layout--pagar">
+
+    <!-- PAINEL ESQUERDO: logo + resumo do plano -->
+    <aside class="panel-left panel-left--pagar" id="panelLeft">
+
+      <div class="pagar-brand">
+        <img src="IMG/Imagem Logo DD.png" alt="Logo Daily" class="brand__logo" />
+        <span class="brand__name">daily</span>
+      </div>
+
+      <div class="plano-resumo">
+        <div class="plano-resumo__header">
+          <span class="plano-resumo__icon">👤</span>
+          <div>
+            <div class="plano-resumo__nome" data-i18n="resumo_nome">Plano Pessoal</div>
+            <div class="plano-resumo__desc" data-i18n="resumo_desc">Acesso individual completo</div>
+          </div>
+        </div>
+
+        <div class="resumo-toggle-group">
+          <button class="resumo-toggle active" data-period="mensal" data-i18n="monthly">Mensal</button>
+          <button class="resumo-toggle" data-period="anual" data-i18n="annual">Anual</button>
+        </div>
+
+        <div class="plano-resumo__preco">
+          <span class="resumo-currency">R$</span>
+          <span class="resumo-valor" id="resumoValor">35</span>
+          <span class="resumo-period" id="resumoPeriod" data-i18n="per_month">/mês</span>
+        </div>
+        <div class="resumo-economy" id="resumoEconomy" data-i18n="economy_personal">Economize R$60 por ano</div>
+
+        <ul class="resumo-features">
+          <li><span class="rcheck">✓</span><span data-i18n="pf1">Perfil individual de tarefas</span></li>
+          <li><span class="rcheck">✓</span><span data-i18n="pf2">Agenda completa</span></li>
+          <li><span class="rcheck">✓</span><span data-i18n="pf3">Controle financeiro</span></li>
+          <li><span class="rcheck">✓</span><span data-i18n="pf4">Previsão do tempo</span></li>
+          <li><span class="rcheck">✓</span><span data-i18n="pf5">Armazenamento de arquivos</span></li>
+        </ul>
+
+        <div class="resumo-total">
+          <span data-i18n="total_label">Total hoje</span>
+          <span class="resumo-total__valor" id="resumoTotal">R$ 35,00</span>
+        </div>
+
+        <div class="resumo-garantia">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span data-i18n="garantia">Pagamento 100% seguro · Cancele quando quiser</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- PAINEL DIREITO: formulário de pagamento -->
+    <section class="panel-right panel-right--pagar" id="panelRight">
+      <div class="panel-right__inner pagar-inner">
+        <div class="pagar-scroll">
+
+          <!-- Voltar: só aparece nos steps 2 e 3 (JS controla) -->
+          <button class="pagar-back" id="btnVoltar" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            <span data-i18n="back">Voltar</span>
+          </button>
+
+          <!-- Steps -->
+          <div class="steps">
+            <div class="step active" id="step1-indicator">
+              <span class="step__num">1</span>
+              <span class="step__label" data-i18n="step_dados">Seus dados</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="step2-indicator">
+              <span class="step__num">2</span>
+              <span class="step__label" data-i18n="step_pagamento">Pagamento</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="step3-indicator">
+              <span class="step__num">3</span>
+              <span class="step__label" data-i18n="step_confirmacao">Confirmação</span>
+            </div>
+          </div>
+
+          <!-- ── STEP 1: DADOS PESSOAIS ── -->
+          <div class="pagar-step" id="stepDados">
+            <div class="pagar-section-title" data-i18n="sec_dados">Confirme seus dados</div>
+            <div class="pagar-grid-2">
+              <div class="pagar-field">
+                <label data-i18n="label_name">Nome completo</label>
+                <input type="text" id="pagNome" placeholder="Seu nome completo" data-i18n-ph="ph_name" autocomplete="name" />
+              </div>
+              <div class="pagar-field">
+                <label data-i18n="label_email">E-mail</label>
+                <input type="email" id="pagEmail" placeholder="seu@email.com" data-i18n-ph="ph_email" autocomplete="email" />
+              </div>
+              <div class="pagar-field">
+                <label data-i18n="label_cpf">CPF</label>
+                <input type="text" id="pagCpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off" />
+              </div>
+              <div class="pagar-field">
+                <label data-i18n="label_tel">Telefone</label>
+                <input type="tel" id="pagTel" placeholder="(00) 00000-0000" maxlength="15" autocomplete="tel" />
+              </div>
+            </div>
+            <button class="btn-primary pagar-btn" id="btnStep1" data-i18n="btn_next_payment">Ir para pagamento</button>
+          </div>
+
+          <!-- ── STEP 2: PAGAMENTO ── -->
+          <div class="pagar-step" id="stepPagamento" style="display:none">
+            <div class="pagar-section-title" data-i18n="sec_pagamento">Forma de pagamento</div>
+
+            <div class="pay-tabs">
+              <button class="pay-tab active" data-method="cartao">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                <span data-i18n="tab_card">Cartão</span>
+              </button>
+              <button class="pay-tab" data-method="pix">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.354 2.646a.9.9 0 011.29 0l2.35 2.35a3.6 3.6 0 002.547 1.054h.509a.9.9 0 01.9.9v.509a3.6 3.6 0 001.054 2.547l2.35 2.35a.9.9 0 010 1.29l-2.35 2.35a3.6 3.6 0 00-1.054 2.547v.509a.9.9 0 01-.9.9h-.509a3.6 3.6 0 00-2.547 1.054l-2.35 2.35a.9.9 0 01-1.29 0l-2.35-2.35a3.6 3.6 0 00-2.547-1.054H5.95a.9.9 0 01-.9-.9v-.509a3.6 3.6 0 00-1.054-2.547l-2.35-2.35a.9.9 0 010-1.29l2.35-2.35A3.6 3.6 0 005.05 6.459V5.95a.9.9 0 01.9-.9h.509a3.6 3.6 0 002.547-1.054l2.35-2.35z"/></svg>
+                <span>Pix</span>
+              </button>
+              <button class="pay-tab" data-method="boleto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h2v16H4zM7 4h1v16H7zM10 4h2v16h-2zM14 4h1v16h-1zM17 4h1v16h-1zM20 4h1v16h-1z"/></svg>
+                <span>Boleto</span>
+              </button>
+            </div>
+
+            <!-- Cartão -->
+            <div class="pay-panel" id="panelCartao">
+              <div class="card-preview" id="cardPreview">
+                <div class="card-preview__chip"></div>
+                <div class="card-preview__number" id="prevNumber">•••• •••• •••• ••••</div>
+                <div class="card-preview__row">
+                  <div>
+                    <div class="card-preview__sublabel" data-i18n="card_name">Nome</div>
+                    <div class="card-preview__name" id="prevName" data-i18n="card_name_ph">SEU NOME</div>
+                  </div>
+                  <div>
+                    <div class="card-preview__sublabel" data-i18n="card_exp">Validade</div>
+                    <div class="card-preview__exp" id="prevExp">MM/AA</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pagar-grid-2">
+                <div class="pagar-field pagar-field--full">
+                  <label data-i18n="card_number">Número do cartão</label>
+                  <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number" inputmode="numeric" />
+                </div>
+                <div class="pagar-field pagar-field--full">
+                  <label data-i18n="card_holder">Nome no cartão</label>
+                  <input type="text" id="cardName" placeholder="Como está no cartão" autocomplete="cc-name" data-i18n-ph="ph_card_name" />
+                </div>
+                <div class="pagar-field">
+                  <label data-i18n="card_exp">Validade</label>
+                  <input type="text" id="cardExp" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp" />
+                </div>
+                <div class="pagar-field">
+                  <label data-i18n="card_cvv">CVV</label>
+                  <div class="input-password">
+                    <input type="password" id="cardCvv" placeholder="•••" maxlength="4" autocomplete="cc-csc" inputmode="numeric" />
+                    <button type="button" class="toggle-pass" id="toggleCvv" aria-label="Mostrar CVV">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="parcelamento-wrap">
+                <label data-i18n="label_parcelas">Parcelas</label>
+                <select id="selectParcelas">
+                  <option value="1">1× de R$ 35,00 (sem juros)</option>
+                  <option value="2">2× de R$ 17,50 (sem juros)</option>
+                  <option value="3">3× de R$ 11,67 (sem juros)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Pix -->
+            <div class="pay-panel" id="panelPix" style="display:none">
+              <div class="pix-box">
+                <div class="pix-qr" aria-label="QR Code Pix">
+                  <svg viewBox="0 0 100 100" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" fill="var(--off-white)" rx="8"/>
+                    <rect x="10" y="10" width="30" height="30" fill="none" stroke="var(--text-dark)" stroke-width="4" rx="3"/>
+                    <rect x="16" y="16" width="18" height="18" fill="var(--text-dark)" rx="2"/>
+                    <rect x="60" y="10" width="30" height="30" fill="none" stroke="var(--text-dark)" stroke-width="4" rx="3"/>
+                    <rect x="66" y="16" width="18" height="18" fill="var(--text-dark)" rx="2"/>
+                    <rect x="10" y="60" width="30" height="30" fill="none" stroke="var(--text-dark)" stroke-width="4" rx="3"/>
+                    <rect x="16" y="66" width="18" height="18" fill="var(--text-dark)" rx="2"/>
+                    <rect x="44" y="10" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="52" y="10" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="44" y="18" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="44" y="44" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="52" y="44" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="60" y="44" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="68" y="44" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="76" y="44" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="44" y="52" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="60" y="52" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="76" y="52" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="44" y="60" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="52" y="60" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="68" y="60" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="44" y="68" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="60" y="68" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="76" y="68" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="52" y="76" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="60" y="76" width="6" height="6" fill="var(--text-dark)"/>
+                    <rect x="76" y="76" width="6" height="6" fill="var(--text-dark)"/>
+                  </svg>
+                </div>
+                <p class="pix-inst" data-i18n="pix_inst">Abra o app do seu banco, escaneie o QR Code e confirme o pagamento.</p>
+                <div class="pix-code-row">
+                  <input type="text" class="pix-code-input" id="pixCode" readonly value="00020126580014br.gov.bcb.pix0136daily-chave-exemplo-uuid@pix.com.br52040000530398654075.005802BR5912Daily App6009Sao Paulo62070503***6304ABCD" />
+                  <button class="pix-copy-btn" id="pixCopyBtn" data-i18n="pix_copy">Copiar</button>
+                </div>
+                <p class="pix-exp" data-i18n="pix_exp">Este código expira em <strong>30 minutos</strong>.</p>
+              </div>
+            </div>
+
+            <!-- Boleto -->
+            <div class="pay-panel" id="panelBoleto" style="display:none">
+              <div class="boleto-box">
+                <div class="boleto-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4h2v16H4zM7 4h1v16H7zM10 4h2v16h-2zM14 4h1v16h-1zM17 4h1v16h-1zM20 4h1v16h-1z"/></svg>
+                </div>
+                <p class="boleto-inst" data-i18n="boleto_inst">O boleto será gerado após a confirmação. O prazo de vencimento é de <strong>3 dias úteis</strong>.</p>
+                <p class="boleto-obs" data-i18n="boleto_obs">Seu acesso será liberado assim que o pagamento for compensado.</p>
+              </div>
+            </div>
+
+            <button class="btn-primary pagar-btn" id="btnStep2" data-i18n="btn_confirm">Confirmar pagamento</button>
+          </div>
+
+          <!-- ── STEP 3: CONFIRMAÇÃO ── -->
+          <div class="pagar-step" id="stepConfirmacao" style="display:none">
+            <div class="confirm-box">
+              <div class="confirm-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h2 class="confirm-title" data-i18n="confirm_title">Pagamento confirmado!</h2>
+              <p class="confirm-sub" data-i18n="confirm_sub">Sua conta foi ativada. Bem-vindo à daily!</p>
+              <div class="confirm-receipt">
+                <div class="receipt-row">
+                  <span data-i18n="receipt_plan">Plano</span>
+                  <span data-i18n="resumo_nome">Plano Pessoal</span>
+                </div>
+                <div class="receipt-row">
+                  <span data-i18n="receipt_period">Período</span>
+                  <span id="receiptPeriod">Mensal</span>
+                </div>
+                <div class="receipt-row receipt-row--total">
+                  <span data-i18n="total_label">Total</span>
+                  <span id="receiptTotal">R$ 35,00</span>
+                </div>
+              </div>
+              <button class="btn-primary pagar-btn" id="btnAcessar" data-i18n="btn_access">Acessar minha conta</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span data-i18n="copyright">© 2026 Daily. Todos os direitos reservados.</span>
+    <div class="footer__links">
+      <a href="privacidade.html" data-i18n="privacy">Privacidade</a>
+      <a href="#" data-i18n="terms">Termos</a>
+      <a href="#" data-i18n="contact">Contato</a>
+    </div>
+  </footer>
+
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script src="JS/pagarPessoal.js"></script>
+</body>
+</html>
