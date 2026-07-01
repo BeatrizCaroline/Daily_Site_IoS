@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Compras · Daily</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="IMG/Imagem Logo DD.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="IMG/Imagem Logo DD.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="IMG/Imagem Logo DD.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="CSS/home.css" />
+  <link rel="stylesheet" href="CSS/listaCompras.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+
+  <!-- HEADER (idêntico ao home.html) -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="home.html" class="header__brand">
+        <img src="IMG/Imagem Logo DD.png" alt="Logo Daily" class="brand-logo" />
+        <span class="brand-name">daily</span>
+      </a>
+      <div class="header__greeting">
+        <span class="greeting-text" id="greetingText">Bom dia, Gustavo 👋</span>
+        <span class="greeting-date" id="greetingDate"></span>
+      </div>
+      <div class="header__controls">
+        <div class="access-group">
+          <button class="hbtn" id="btnFontDecrease" aria-label="Diminuir fonte">A-</button>
+          <button class="hbtn" id="btnFontNormal"   aria-label="Fonte padrão">A</button>
+          <button class="hbtn" id="btnFontIncrease" aria-label="Aumentar fonte">A+</button>
+          <button class="hbtn" id="btnContrast" aria-label="Alto contraste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+          </button>
+        </div>
+        <div class="header-sep"></div>
+        <div class="lang-group">
+          <button class="hbtn lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-pipe">|</span>
+          <button class="hbtn lang-btn" data-lang="es">ES</button>
+          <span class="lang-pipe">|</span>
+          <button class="hbtn lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="header-sep"></div>
+        <button class="hbtn" id="themeBtn" aria-label="Alternar tema">
+          <svg class="ti ti--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="ti ti--sun"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <div class="header-sep"></div>
+        <button class="avatar-btn" id="avatarBtn" aria-label="Menu do usuário">
+          <span class="avatar-initials">GS</span>
+        </button>
+        <div class="avatar-dropdown" id="avatarDropdown">
+          <div class="avatar-dropdown__user">
+            <span class="avatar-initials avatar-initials--lg">GS</span>
+            <div><strong>Gustavo Silva</strong><small>gustavo@email.com</small></div>
+          </div>
+          <hr class="avatar-dropdown__sep" />
+          <a href="#" class="avatar-dropdown__item">Meu perfil</a>
+          <a href="#" class="avatar-dropdown__item">Configurações</a>
+          <hr class="avatar-dropdown__sep" />
+          <a href="index.html" class="avatar-dropdown__item avatar-dropdown__item--danger">Sair</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR (igual ao home) -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar__nav" role="navigation" aria-label="Menu principal">
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></span>
+          <span class="sidebar__label">Clima</span>
+        </a>
+        <a href="home.html" class="sidebar__item active">
+          <span class="sidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10"/></svg></span>
+          <span class="sidebar__label">Doméstico</span>
+        </a>
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0121 20.25H3a12.083 12.083 0 012.84-9.672L12 14z"/></svg></span>
+          <span class="sidebar__label">Acadêmico</span>
+        </a>
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>
+          <span class="sidebar__label">Trabalho</span>
+        </a>
+      </nav>
+      <button class="sidebar__collapse-btn" id="sidebarCollapseBtn" aria-label="Recolher menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+    </aside>
+
+    <main class="main-content lc-main" id="mainContent">
+
+      <!-- BREADCRUMB -->
+      <div class="lc-breadcrumb">
+        <a href="home.html" class="lc-breadcrumb__link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/></svg>
+          Doméstico
+        </a>
+        <span class="lc-breadcrumb__sep">›</span>
+        <span class="lc-breadcrumb__current" data-i18n="lc_title">Lista de Compras</span>
+      </div>
+
+      <!-- GRID: coluna esquerda + coluna direita -->
+      <div class="lc-grid">
+
+        <!-- ── COLUNA PRINCIPAL ── -->
+        <div class="lc-col-main">
+
+          <!-- Page header -->
+          <div class="lc-page-header">
+            <div>
+              <h1 class="lc-title">
+                <span class="lc-title__icon">🛒</span>
+                <span data-i18n="lc_title">Lista de Compras</span>
+              </h1>
+              <p class="lc-subtitle" data-i18n="lc_sub">Adicione itens, reordene arrastando e compare preços</p>
+            </div>
+            <div class="lc-page-header__actions">
+              <button class="lc-btn lc-btn--ghost" id="btnClearChecked">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span data-i18n="lc_clear_checked">Limpar marcados</span>
+              </button>
+              <button class="lc-btn lc-btn--ghost" id="btnClearAll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <span data-i18n="lc_clear_all">Limpar tudo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Campo de adição -->
+          <div class="lc-add-wrap">
+            <div class="lc-add-box" id="lcAddBox">
+              <span class="lc-add-box__icon" aria-hidden="true">➕</span>
+              <input
+                type="text"
+                class="lc-add-input"
+                id="lcAddInput"
+                placeholder="Adicionar item... ex: leite, arroz 5kg"
+                data-i18n-ph="lc_add_ph"
+                autocomplete="off"
+                maxlength="80"
+                aria-label="Nome do item"
+                aria-autocomplete="list"
+                aria-controls="lcSuggestions"
+              />
+              <select class="lc-qty-select" id="lcQtySelect" aria-label="Quantidade">
+                <option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+                <option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option>
+                <option value="9">9</option><option value="10">10</option>
+              </select>
+              <button class="lc-add-btn" id="lcAddBtn" aria-label="Adicionar item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
+            <ul class="lc-suggestions" id="lcSuggestions" role="listbox" aria-label="Sugestões"></ul>
+          </div>
+
+          <!-- Filtros -->
+          <div class="lc-filters" role="group" aria-label="Filtrar por categoria">
+            <button class="lc-filter active" data-cat="all"        data-i18n="lc_cat_all">Todos</button>
+            <button class="lc-filter" data-cat="frutas"     data-i18n="lc_cat_frutas">🍎 Frutas</button>
+            <button class="lc-filter" data-cat="verduras"   data-i18n="lc_cat_verduras">🥦 Verduras</button>
+            <button class="lc-filter" data-cat="laticinios" data-i18n="lc_cat_laticinios">🥛 Laticínios</button>
+            <button class="lc-filter" data-cat="carnes"     data-i18n="lc_cat_carnes">🥩 Carnes</button>
+            <button class="lc-filter" data-cat="graos"      data-i18n="lc_cat_graos">🌾 Grãos</button>
+            <button class="lc-filter" data-cat="bebidas"    data-i18n="lc_cat_bebidas">🥤 Bebidas</button>
+            <button class="lc-filter" data-cat="limpeza"    data-i18n="lc_cat_limpeza">🧴 Limpeza</button>
+            <button class="lc-filter" data-cat="higiene"    data-i18n="lc_cat_higiene">🪥 Higiene</button>
+            <button class="lc-filter" data-cat="outros"     data-i18n="lc_cat_outros">📦 Outros</button>
+          </div>
+
+          <!-- Lista -->
+          <div class="lc-list-wrap">
+            <ul class="lc-list" id="lcList" aria-label="Lista de compras" aria-live="polite"></ul>
+            <div class="lc-empty" id="lcEmpty" role="status">
+              <div class="lc-empty__icon" aria-hidden="true">🛒</div>
+              <p class="lc-empty__text" data-i18n="lc_empty">Sua lista está vazia. Adicione itens acima!</p>
+            </div>
+          </div>
+
+        </div><!-- /lc-col-main -->
+
+        <!-- ── COLUNA LATERAL ── -->
+        <div class="lc-col-side">
+
+          <!-- Card: progresso -->
+          <div class="lc-summary-card" aria-label="Resumo da lista">
+            <div class="lc-summary-card__title" data-i18n="lc_summary_title">Progresso</div>
+
+            <div class="lc-progress-ring-wrap" aria-hidden="true">
+              <svg class="lc-ring-svg" width="90" height="90" viewBox="0 0 90 90">
+                <circle class="lc-ring-bg" cx="45" cy="45" r="36"/>
+                <circle class="lc-ring-fg" id="lcRingFg" cx="45" cy="45" r="36"/>
+              </svg>
+              <div class="lc-ring-numbers">
+                <span class="lc-ring-num-big" id="lcRingChecked">0</span>
+                <span class="lc-ring-num-total" id="lcRingTotal">/ 0</span>
+              </div>
+            </div>
+            <p class="lc-ring-text" id="lcRingLabel" aria-live="polite">0 de 0 itens comprados</p>
+
+            <!-- Por categoria -->
+            <div class="lc-cat-stats" id="lcCatStats" aria-label="Itens por categoria"></div>
+          </div>
+
+          <!-- Card: ações rápidas -->
+          <div class="lc-quick-actions" aria-label="Ações rápidas">
+            <div class="lc-quick-actions__title" data-i18n="lc_actions_title">Ações</div>
+            <button class="lc-btn lc-btn--ghost" id="btnQaClearChecked">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <span data-i18n="lc_clear_checked">Limpar marcados</span>
+            </button>
+            <button class="lc-btn lc-btn--ghost" id="btnQaClearAll">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              <span data-i18n="lc_clear_all">Limpar tudo</span>
+            </button>
+          </div>
+
+          <!-- Dica -->
+          <div class="lc-tip-card">
+            💡 <strong data-i18n="lc_tip_bold">Dica:</strong>
+            <span data-i18n="lc_tip_text"> arraste os itens para reordenar. Clique em 💰 para comparar preços nos mercados.</span>
+          </div>
+
+        </div><!-- /lc-col-side -->
+
+      </div><!-- /lc-grid -->
+
+    </main>
+  </div>
+
+  <!-- MODAL PREÇOS -->
+  <div class="lc-modal-overlay" id="priceModalOverlay" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
+    <div class="lc-modal">
+      <div class="lc-modal__header">
+        <div>
+          <h2 class="lc-modal__title" id="priceModalTitle">
+            💰 <span id="priceModalItemName">Produto</span>
+          </h2>
+          <p class="lc-modal__sub" data-i18n="price_modal_sub">Melhores preços nos maiores mercados do Brasil</p>
+        </div>
+        <button class="lc-modal__close" id="priceModalClose" aria-label="Fechar modal de preços">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="lc-modal__body" id="priceModalBody">
+        <div class="price-loading" id="priceLoading">
+          <div class="price-loading__spinner"></div>
+          <span data-i18n="price_loading">Buscando preços com IA…</span>
+        </div>
+        <div id="priceResults" style="display:none"></div>
+        <div class="price-error" id="priceError" style="display:none">
+          <span aria-hidden="true">⚠️</span>
+          <span id="priceErrorMsg"></span>
+        </div>
+      </div>
+      <div class="lc-modal__footer">
+        <p class="price-disclaimer" data-i18n="price_disclaimer">⚠️ Preços estimados por IA com base em dados de mercado. Confirme no site oficial antes de comprar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDITAR -->
+  <div class="lc-modal-overlay" id="editModalOverlay" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="lc-modal lc-modal--sm">
+      <div class="lc-modal__header">
+        <h2 class="lc-modal__title" id="editModalTitle" data-i18n="edit_title">Editar item</h2>
+        <button class="lc-modal__close" id="editModalClose" aria-label="Fechar modal de edição">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="lc-modal__body">
+        <div class="edit-field">
+          <label for="editNameInput" data-i18n="edit_name_label">Nome do item</label>
+          <input type="text" id="editNameInput" class="edit-input" maxlength="80" />
+        </div>
+        <div class="edit-field">
+          <label for="editQtyInput" data-i18n="edit_qty_label">Quantidade</label>
+          <input type="number" id="editQtyInput" class="edit-input edit-input--sm" min="1" max="99" />
+        </div>
+        <div class="edit-field">
+          <label for="editCatSelect" data-i18n="edit_cat_label">Categoria</label>
+          <select id="editCatSelect" class="edit-input">
+            <option value="frutas">🍎 Frutas</option>
+            <option value="verduras">🥦 Verduras</option>
+            <option value="laticinios">🥛 Laticínios</option>
+            <option value="carnes">🥩 Carnes</option>
+            <option value="graos">🌾 Grãos</option>
+            <option value="bebidas">🥤 Bebidas</option>
+            <option value="limpeza">🧴 Limpeza</option>
+            <option value="higiene">🪥 Higiene</option>
+            <option value="outros">📦 Outros</option>
+          </select>
+        </div>
+      </div>
+      <div class="lc-modal__footer lc-modal__footer--actions">
+        <button class="lc-btn lc-btn--ghost" id="editCancelBtn" data-i18n="btn_cancel">Cancelar</button>
+        <button class="lc-btn lc-btn--primary" id="editSaveBtn" data-i18n="btn_save">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span data-i18n="copyright">© 2026 Daily. Todos os direitos reservados.</span>
+    <div class="footer__links">
+      <a href="privacidade.html" data-i18n="privacy">Privacidade</a>
+      <a href="#" data-i18n="terms">Termos</a>
+      <a href="#" data-i18n="contact">Contato</a>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAV — acima do rodapé, abaixo do conteúdo -->
+  <nav class="mobile-nav" aria-label="Navegação mobile">
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+      <span>Clima</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10"/></svg>
+      <span>Doméstico</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0121 20.25H3a12.083 12.083 0 012.84-9.672L12 14z"/></svg>
+      <span>Acadêmico</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      <span>Trabalho</span>
+    </a>
+  </nav>
+
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script src="JS/listaCompras.js"></script>
+</body>
+</html>

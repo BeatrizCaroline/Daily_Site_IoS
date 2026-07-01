@@ -1,3 +1,29 @@
+// 1. Importar as funções necessárias dos SDKs do Firebase (Links oficiais via CDN para uso no navegador)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// 2. Configuração do seu projeto Firebase (Atualizado com as suas chaves reais!)
+const firebaseConfig = {
+  apiKey: "AIzaSyDdtBpgM3Ri_l27Vp2yg7h6qKEjb4pnhq0",
+  authDomain: "daily-4131c.firebaseapp.com",
+  projectId: "daily-4131c",
+  storageBucket: "daily-4131c.firebasestorage.app",
+  messagingSenderId: "596319308806",
+  appId: "1:596319308806:web:a75704e5cd87570ff40787",
+  measurementId: "G-5LHV57CVF4"
+};
+
+// 3. Inicializar o Firebase e os seus Serviços
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+console.log("🔥 Daily: Firebase conectado com sucesso!", app);
+
+/* ── DICIONÁRIO I18N (INTERNACIONALIZAÇÃO) ── */
 const i18n = {
   pt: {
     nav_sobre:'Sobre Nós', nav_planos:'Planos', nav_login:'Login',
@@ -86,7 +112,7 @@ const i18n = {
     sobre_signoff:'Hecha por gente que vive el mismo ajetreo que tú, todos los días.',
     tag_planos:'Elige tu plan', planos_title:'Planes simples, sin letra chica',
     planos_sub:'Comienza a organizar tu vida hoy. Sin fidelidad, cancela cuando quieras.',
-    trial_badge:'Gratis 7 días', trial_name:'Prueba Gratis',
+    trial_badge:'Gratis 7 dias', trial_name:'Prueba Gratis',
     trial_desc:'Prueba sin compromiso y sin tarjeta de crédito.',
     trial_free:'Gratis', trial_economy:'7 días, luego R$35/mes',
     trial_f1:'Acceso completo por 7 días', trial_f2:'Sin tarjeta de crédito',
@@ -107,7 +133,7 @@ const i18n = {
     cf3:'Agenda completa', cf4:'Control financiero', cf5:'Precio reducido por persona',
     plan_cta_corp:'Solicitar plan Corporativo',
     copyright:'© 2026 Daily. Todos los derechos reservados.',
-    privacy:'Privacidad', terms:'Términos', contact:'Contacto',
+    privacy:'Privacidade', terms:'Términos', contact:'Contacto',
   },
   en: {
     nav_sobre:'About Us', nav_planos:'Plans', nav_login:'Login',
@@ -238,7 +264,7 @@ function applyContrast(on) {
 btnContrast.addEventListener('click', () => applyContrast(!hc));
 applyContrast(hc);
 
-/* ── LOGIN / CADASTRO ── */
+/* ── LOGIN / CADASTRO (MUDANÇA DE TELAS) ── */
 const loginView      = document.getElementById('loginView');
 const signupView     = document.getElementById('signupView');
 const planChipIcon   = document.getElementById('planChipIcon');
@@ -298,14 +324,11 @@ document.querySelectorAll('.plano-cta').forEach(btn => {
   btn.addEventListener('click', () => {
     const planType = btn.dataset.planType;
 
-    // Corporativo → redireciona direto para contato.html
     if (planType === 'corp') {
       window.location.href = 'contato.html';
       return;
     }
 
-    // Pessoal → vai para cadastro e depois redireciona para pagarPessoal.html
-    // Trial → vai para cadastro (fluxo normal)
     showSignupView(planType);
 
     if (isMobile) {
@@ -317,15 +340,73 @@ document.querySelectorAll('.plano-cta').forEach(btn => {
   });
 });
 
-/* Botão final do cadastro */
-signupFinalBtn.addEventListener('click', () => {
-  if (currentPlanType === 'trial') {
-    // Trial: lógica futura (alert por ora)
-    const t = i18n[currentLang];
-    alert(t.btn_activate_trial);
-  } else {
-    // Pessoal → redireciona para página de pagamento
-    window.location.href = 'pagarPessoal.html';
+/* ── INTEGRACAO FIREBASE: FINALIZAR CADASTRO (SIGNUP) ── */
+signupFinalBtn.addEventListener('click', async () => {
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+
+  if (!name || !email || !password) {
+    alert(currentLang === 'en' ? "Please fill in all fields." : "Por favor, preencha todos os campos.");
+    return;
+  }
+
+  try {
+    // 1. Cria a conta no Firebase Authentication
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // 2. Identifica se escolheu o período Mensal ou Anual
+    const activeToggle = document.querySelector(`[data-plan="pessoal"].active`);
+    const period = activeToggle ? activeToggle.dataset.period : 'mensal';
+
+    // 3. Salva os metadados do perfil do usuário criado no Firestore Database
+    await setDoc(doc(db, "usuarios", user.uid), {
+      nome: name,
+      email: email,
+      planoEscolhido: currentPlanType, // 'pessoal' ou 'trial'
+      periodoPlano: currentPlanType === 'pessoal' ? period : '7_dias',
+      criadoEm: new Date().toISOString()
+    });
+
+    alert(currentLang === 'en' ? "Account created successfully!" : "Conta criada com sucesso!");
+
+    // 4. Redirecionamentos de acordo com o plano selecionado
+    if (currentPlanType === 'trial') {
+      window.location.href = 'home.html';
+    } else {
+      window.location.href = 'pagarPessoal.html';
+    }
+
+  } catch (error) {
+    console.error("Erro ao registrar no Firebase:", error);
+    alert(error.message);
+  }
+});
+
+/* ── INTEGRACAO FIREBASE: FAZER LOGIN ── */
+const loginBtn = document.querySelector('.form .btn-primary[data-i18n="btn_enter"]');
+
+loginBtn.addEventListener('click', async (e) => {
+  e.preventDefault(); // Evita a navegação imediata padrão da tag <a>
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  if (!email || !password) {
+    alert(currentLang === 'en' ? "Please enter your email and password." : "Por favor, preencha o e-mail e a senha.");
+    return;
+  }
+
+  try {
+    // Autentica o usuário com os dados informados no Firebase Authentication
+    await signInWithEmailAndPassword(auth, email, password);
+    
+    // Sucesso absoluto -> Segue para a página logada
+    window.location.href = 'home.html';
+  } catch (error) {
+    console.error("Erro ao autenticar login no Firebase:", error);
+    alert(currentLang === 'en' ? "Login failed: Invalid email or password." : "Falha no login: Usuário ou senha incorretos.");
   }
 });
 
