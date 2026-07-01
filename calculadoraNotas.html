@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Notas · Daily</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="IMG/Imagem Logo DD.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="IMG/Imagem Logo DD.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="IMG/Imagem Logo DD.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="CSS/home.css" />
+  <link rel="stylesheet" href="CSS/calculadoraNotas.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+</head>
+<body>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="home.html" class="header__brand">
+        <img src="IMG/Imagem Logo DD.png" alt="Logo Daily" class="brand-logo" />
+        <span class="brand-name">daily</span>
+      </a>
+      <div class="header__greeting">
+        <span class="greeting-text" id="greetingText">Bom dia 👋</span>
+        <span class="greeting-date" id="greetingDate"></span>
+      </div>
+      <div class="header__controls">
+        <div class="access-group" role="toolbar" aria-label="Acessibilidade">
+          <span class="header-label" style="font-size:.65rem;font-weight:600;color:var(--hf-text);white-space:nowrap;letter-spacing:.03em;">Acessibilidade:</span>
+          <button class="hbtn" id="btnFontDecrease" aria-label="Diminuir fonte">A-</button>
+          <button class="hbtn" id="btnFontNormal"   aria-label="Fonte padrão">A</button>
+          <button class="hbtn" id="btnFontIncrease" aria-label="Aumentar fonte">A+</button>
+          <button class="hbtn" id="btnContrast" aria-label="Alto contraste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+          </button>
+        </div>
+        <div class="header-sep" aria-hidden="true"></div>
+        <div class="lang-group" role="group" aria-label="Idioma">
+          <button class="hbtn lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="es">ES</button>
+          <span class="lang-pipe" aria-hidden="true">|</span>
+          <button class="hbtn lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="header-sep" aria-hidden="true"></div>
+        <button class="hbtn" id="themeBtn" aria-label="Alternar tema">
+          <svg class="ti ti--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="ti ti--sun"  xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <div class="header-sep" aria-hidden="true"></div>
+        <button class="avatar-btn" id="avatarBtn" aria-label="Menu do usuário" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar-initials" id="headerAvatarInitials">GS</span>
+        </button>
+        <div class="avatar-dropdown" id="avatarDropdown" role="menu" aria-label="Menu do usuário">
+          <div class="avatar-dropdown__user">
+            <span class="avatar-initials avatar-initials--lg">GS</span>
+            <div><strong>Gustavo Silva</strong><small>gustavo@email.com</small></div>
+          </div>
+          <hr class="avatar-dropdown__sep" />
+          <a href="minhaConta.html" class="avatar-dropdown__item" role="menuitem" data-i18n="dd_profile">Meu perfil</a>
+          <a href="#" class="avatar-dropdown__item" role="menuitem" data-i18n="dd_settings">Configurações</a>
+          <hr class="avatar-dropdown__sep" />
+          <a href="index.html" class="avatar-dropdown__item avatar-dropdown__item--danger" role="menuitem" data-i18n="dd_logout">Sair</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+      <nav class="sidebar__nav" role="navigation">
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></span>
+          <span class="sidebar__label" data-i18n="menu_clima">Clima</span>
+        </a>
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10"/></svg></span>
+          <span class="sidebar__label" data-i18n="menu_domestico">Doméstico</span>
+        </a>
+        <a href="home.html" class="sidebar__item active">
+          <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0121 20.25H3a12.083 12.083 0 012.84-9.672L12 14z"/></svg></span>
+          <span class="sidebar__label" data-i18n="menu_academico">Acadêmico</span>
+        </a>
+        <a href="home.html" class="sidebar__item">
+          <span class="sidebar__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>
+          <span class="sidebar__label" data-i18n="menu_trabalho">Trabalho</span>
+        </a>
+      </nav>
+      <button class="sidebar__collapse-btn" id="sidebarCollapseBtn" aria-label="Recolher menu lateral">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content cn-main" id="mainContent">
+
+      <!-- TOAST -->
+      <div class="cn-toast" id="cnToast" role="alert" aria-live="assertive"></div>
+
+      <!-- BREADCRUMB -->
+      <nav class="cn-breadcrumb" aria-label="Navegação estrutural">
+        <a href="home.html" class="cn-breadcrumb__link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/></svg>
+          <span data-i18n="menu_academico">Acadêmico</span>
+        </a>
+        <span class="cn-breadcrumb__sep" aria-hidden="true">›</span>
+        <span class="cn-breadcrumb__current" data-i18n="cn_title">Calculadora de Notas</span>
+      </nav>
+
+      <!-- PAGE HEADER -->
+      <div class="cn-page-header">
+        <div>
+          <h1 class="cn-title">
+            <span aria-hidden="true">🧮</span>
+            <span data-i18n="cn_title">Calculadora de Notas</span>
+          </h1>
+          <p class="cn-subtitle" data-i18n="cn_sub">Simule médias, metas e veja quanto precisa tirar na próxima prova</p>
+        </div>
+        <div class="cn-header-actions">
+          <button class="cn-btn cn-btn--ghost" id="btnNewDisciplina">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <span data-i18n="btn_new_disciplina">Nova disciplina</span>
+          </button>
+          <button class="cn-btn cn-btn--ghost" id="btnClearAll">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <span data-i18n="btn_clear_all">Limpar tudo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- GRID PRINCIPAL -->
+      <div class="cn-grid">
+
+        <!-- COLUNA ESQUERDA: disciplinas -->
+        <div class="cn-col-main">
+
+          <!-- Card "Como calcular?" (informativo, colapsável) -->
+          <details class="cn-info-card">
+            <summary class="cn-info-card__summary">
+              <span>💡</span>
+              <span data-i18n="info_title">Como funciona?</span>
+              <svg class="cn-info-card__arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="cn-info-card__body">
+              <p data-i18n="info_p1">Adicione disciplinas, insira suas notas e pesos. A calculadora mostrará automaticamente sua média e o quanto você precisa tirar na prova final para atingir sua meta.</p>
+              <ul class="cn-info-list">
+                <li data-i18n="info_l1">📝 Cada nota pode ter um peso diferente (ex: prova vale 2×, trabalho vale 1×)</li>
+                <li data-i18n="info_l2">🎯 Defina uma meta de aprovação para ver o que precisa na próxima prova</li>
+                <li data-i18n="info_l3">📊 O resumo geral mostra sua situação em todas as disciplinas</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Lista de disciplinas -->
+          <div id="disciplinasList" aria-label="Lista de disciplinas" aria-live="polite"></div>
+
+          <!-- Empty state -->
+          <div class="cn-empty" id="cnEmpty">
+            <div class="cn-empty__icon" aria-hidden="true">🎓</div>
+            <p class="cn-empty__text" data-i18n="cn_empty">Nenhuma disciplina adicionada ainda.</p>
+            <button class="cn-btn cn-btn--primary cn-btn--lg" id="btnEmptyAdd">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              <span data-i18n="btn_add_first">Adicionar primeira disciplina</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA: resumo geral -->
+        <div class="cn-col-side">
+
+          <!-- Resumo geral -->
+          <div class="cn-summary-card" id="cnSummaryCard" aria-label="Resumo geral das disciplinas">
+            <div class="cn-summary-card__title" data-i18n="summary_title">Resumo Geral</div>
+
+            <!-- Placar de situação -->
+            <div class="cn-placar" id="cnPlacar">
+              <div class="cn-placar-item cn-placar-item--ok">
+                <span class="cn-placar-item__num" id="placarOk">0</span>
+                <span class="cn-placar-item__label" data-i18n="placar_ok">Aprovado</span>
+              </div>
+              <div class="cn-placar-item cn-placar-item--risco">
+                <span class="cn-placar-item__num" id="placarRisco">0</span>
+                <span class="cn-placar-item__label" data-i18n="placar_risco">Em risco</span>
+              </div>
+              <div class="cn-placar-item cn-placar-item--rep">
+                <span class="cn-placar-item__num" id="placarRep">0</span>
+                <span class="cn-placar-item__label" data-i18n="placar_rep">Reprovado</span>
+              </div>
+            </div>
+
+            <!-- Média geral -->
+            <div class="cn-media-geral">
+              <span class="cn-media-geral__label" data-i18n="media_geral">Média geral</span>
+              <span class="cn-media-geral__value" id="mediaGeral">--</span>
+            </div>
+
+            <!-- Barras por disciplina -->
+            <div class="cn-bars" id="cnBars" aria-label="Médias por disciplina"></div>
+
+            <!-- Dica situacional -->
+            <div class="cn-summary-tip" id="cnSummaryTip" style="display:none">
+              <span class="cn-summary-tip__icon" id="cnTipIcon" aria-hidden="true">💡</span>
+              <span class="cn-summary-tip__text" id="cnTipText"></span>
+            </div>
+          </div>
+
+          <!-- Card dica -->
+          <div class="cn-tip-card">
+            <strong data-i18n="tip_bold">💡 Dica:</strong>
+            <span data-i18n="tip_text"> Adicione pesos diferentes às suas avaliações para uma média mais precisa.</span>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL: Nova / Editar Disciplina -->
+  <div class="cn-modal-overlay" id="disciplinaModalOverlay" role="dialog" aria-modal="true" aria-labelledby="disciplinaModalTitle">
+    <div class="cn-modal" id="disciplinaModal">
+      <div class="cn-modal__header">
+        <h2 class="cn-modal__title" id="disciplinaModalTitle" data-i18n="modal_add_title">Nova disciplina</h2>
+        <button class="cn-modal__close" id="disciplinaModalClose" aria-label="Fechar modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="cn-modal__body">
+        <div class="cn-field">
+          <label for="modalDisciplinaName" data-i18n="label_disciplina_name">Nome da disciplina</label>
+          <input type="text" id="modalDisciplinaName" class="cn-input" maxlength="60" placeholder="Ex: Matemática, Física…" data-i18n-ph="ph_disciplina_name" />
+        </div>
+        <div class="cn-field-row">
+          <div class="cn-field">
+            <label for="modalMediaMin" data-i18n="label_media_min">Média para aprovação</label>
+            <input type="number" id="modalMediaMin" class="cn-input" min="0" max="10" step="0.1" value="6" />
+          </div>
+          <div class="cn-field">
+            <label for="modalScale" data-i18n="label_scale">Escala de notas</label>
+            <select id="modalScale" class="cn-input cn-select">
+              <option value="10" data-i18n="scale_10">0 – 10</option>
+              <option value="100" data-i18n="scale_100">0 – 100</option>
+            </select>
+          </div>
+        </div>
+        <!-- Cor da disciplina -->
+        <div class="cn-field">
+          <label data-i18n="label_color">Cor</label>
+          <div class="cn-color-options" role="radiogroup" aria-label="Escolha uma cor">
+            <button class="cn-color-opt active" data-color="#4150dd" aria-label="Azul" style="background:#4150dd"></button>
+            <button class="cn-color-opt" data-color="#6553f5" aria-label="Roxo" style="background:#6553f5"></button>
+            <button class="cn-color-opt" data-color="#22a06b" aria-label="Verde" style="background:#22a06b"></button>
+            <button class="cn-color-opt" data-color="#e07b2a" aria-label="Laranja" style="background:#e07b2a"></button>
+            <button class="cn-color-opt" data-color="#e03a3a" aria-label="Vermelho" style="background:#e03a3a"></button>
+            <button class="cn-color-opt" data-color="#0ea5e9" aria-label="Azul claro" style="background:#0ea5e9"></button>
+            <button class="cn-color-opt" data-color="#d946ef" aria-label="Rosa" style="background:#d946ef"></button>
+            <button class="cn-color-opt" data-color="#f59e0b" aria-label="Amarelo" style="background:#f59e0b"></button>
+          </div>
+        </div>
+      </div>
+      <div class="cn-modal__footer">
+        <button class="cn-btn cn-btn--ghost" id="disciplinaModalCancel" data-i18n="btn_cancel">Cancelar</button>
+        <button class="cn-btn cn-btn--primary" id="disciplinaModalSave" data-i18n="btn_save">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Adicionar Nota -->
+  <div class="cn-modal-overlay" id="notaModalOverlay" role="dialog" aria-modal="true" aria-labelledby="notaModalTitle">
+    <div class="cn-modal cn-modal--sm">
+      <div class="cn-modal__header">
+        <h2 class="cn-modal__title" id="notaModalTitle" data-i18n="modal_nota_title">Adicionar avaliação</h2>
+        <button class="cn-modal__close" id="notaModalClose" aria-label="Fechar modal de nota">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="cn-modal__body">
+        <div class="cn-field">
+          <label for="notaName" data-i18n="label_nota_name">Nome da avaliação</label>
+          <input type="text" id="notaName" class="cn-input" maxlength="50" placeholder="Ex: Prova 1, Trabalho…" data-i18n-ph="ph_nota_name" />
+        </div>
+        <div class="cn-field-row">
+          <div class="cn-field">
+            <label for="notaValor" data-i18n="label_nota_valor">Nota</label>
+            <input type="number" id="notaValor" class="cn-input" min="0" step="0.1" placeholder="0.0" />
+          </div>
+          <div class="cn-field">
+            <label for="notaPeso" data-i18n="label_nota_peso">Peso</label>
+            <input type="number" id="notaPeso" class="cn-input" min="0.1" max="10" step="0.1" value="1" />
+          </div>
+        </div>
+        <div class="cn-field">
+          <label for="notaTipo" data-i18n="label_nota_tipo">Tipo</label>
+          <select id="notaTipo" class="cn-input cn-select">
+            <option value="prova"    data-i18n="tipo_prova">Prova</option>
+            <option value="trabalho" data-i18n="tipo_trabalho">Trabalho</option>
+            <option value="quiz"     data-i18n="tipo_quiz">Quiz</option>
+            <option value="outro"    data-i18n="tipo_outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="cn-modal__footer">
+        <button class="cn-btn cn-btn--ghost" id="notaModalCancel" data-i18n="btn_cancel">Cancelar</button>
+        <button class="cn-btn cn-btn--primary" id="notaModalSave" data-i18n="btn_save_nota">Salvar nota</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Simulador "quanto preciso?" -->
+  <div class="cn-modal-overlay" id="simModalOverlay" role="dialog" aria-modal="true" aria-labelledby="simModalTitle">
+    <div class="cn-modal cn-modal--sm">
+      <div class="cn-modal__header">
+        <h2 class="cn-modal__title" id="simModalTitle" data-i18n="modal_sim_title">Quanto preciso tirar?</h2>
+        <button class="cn-modal__close" id="simModalClose" aria-label="Fechar simulador">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="cn-modal__body">
+        <div class="cn-sim-info" id="simInfo"></div>
+        <div class="cn-field">
+          <label for="simPeso" data-i18n="sim_peso_label">Peso da próxima avaliação</label>
+          <input type="number" id="simPeso" class="cn-input" min="0.1" max="10" step="0.1" value="1" />
+        </div>
+        <div class="cn-sim-result" id="simResult" aria-live="polite"></div>
+      </div>
+      <div class="cn-modal__footer">
+        <button class="cn-btn cn-btn--primary" id="simCalcBtn" data-i18n="btn_calc">Calcular</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span data-i18n="copyright">© 2026 Daily. Todos os direitos reservados.</span>
+    <div class="footer__links">
+      <a href="privacidade.html" data-i18n="privacy">Privacidade</a>
+      <a href="#" data-i18n="terms">Termos</a>
+      <a href="#" data-i18n="contact">Contato</a>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav" aria-label="Navegação mobile">
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+      <span data-i18n="menu_clima">Clima</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/></svg>
+      <span data-i18n="menu_domestico">Doméstico</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0121 20.25H3a12.083 12.083 0 012.84-9.672L12 14z"/></svg>
+      <span data-i18n="menu_academico">Acadêmico</span>
+    </a>
+    <a href="home.html" class="mobile-nav__item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>
+      <span data-i18n="menu_trabalho">Trabalho</span>
+    </a>
+  </nav>
+
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script src="JS/calculadoraNotas.js"></script>
+</body>
+</html>
